@@ -1,0 +1,155 @@
+body{
+  background-image: url('/images/img-home.jpg');
+}
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  
+}
+
+.header {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+.content {
+    display: flex;
+    flex-direction: column;
+  }
+
+.image {
+    width: auto;
+    height: 70px;
+    
+      
+    }
+
+.form {
+      margin-top: 2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+     
+    }
+
+.form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: fit-content;
+        border: 1;
+       }
+
+input {
+          margin-top: 6px;
+          min-width: 18em;
+          height: 37px;
+          padding: 0px 10px;
+          font-size: 16px;
+          font-family: "Open Sans", sans-serif;
+          background-color: #f3f3f3;
+          border: 0;
+          border-radius: 4px;
+          margin-bottom: 31px;
+          transition: all 250ms ease-in-out;
+        }
+         
+.hover {
+            background-color: #ffffff;
+            box-shadow: 0px 0px 14px 0.3px #0e81ce96;
+          }
+
+          
+.focus {
+            outline: none;
+            box-shadow: 0px 0px 12px 0.8px #3474dbb2;
+          }
+     
+
+.button1 {
+  display: inline-block;
+  border-radius: 3px;
+  background-color: #8fbfec;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 25px;
+  padding: 10px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-left: 40px;
+
+}
+
+.button1 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button1 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button1:hover span {
+  padding-right: 25px;
+}
+
+.button1:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+       
+.login-forgot-pass {
+  bottom: 10px;
+  color: rgb(15, 15, 15);
+  cursor: pointer;
+  display: block;
+  font-size: 28px;
+  left: 0;
+  opacity: 0.6;
+  padding: .5rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  
+  
+}
+
+.login-text {
+  background:  rgb(255, 255, 255);
+
+  color:  rgb(255, 255, 255);
+  font-size: 1.5rem;
+  margin: 0 auto;
+  max-width: 50%;
+  padding: .5rem;
+  text-align: center;
+  text-shadow: 1px -1px 0 rgb(255, 255, 255);
+ 
+}
+.fa-stack-1x {
+  color: black;
+}
+
+.login-screen {
+  background-color: #FFF;
+  padding: 20px;
+  border-radius: 10px
+ 
+  
+}
+.error{
+  margin: auto;
+}

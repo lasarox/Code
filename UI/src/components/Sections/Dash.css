@@ -1,0 +1,297 @@
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+  .panel-heading > .dropdown .dropdown-toggle {
+    color: inherit;
+  }
+ .col-xs-3s{
+    float: left;
+  }
+  .col-xs-9{
+    margin-left: 70px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .huge {
+    font-size: 50px;
+    margin-left :20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .panel-footer {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+  .panel {
+    margin-right: 10px;
+    width: 335px;
+    height: 150px;
+  }
+  .panel-green {
+    border-color: #5cb85c;
+  }
+  .panel-green > .panel-heading {
+    border-color: #5cb85c;
+    color: white;
+    background-color: #5cb85c;
+  }
+  .panel-green > a {
+    color: #5cb85c;
+  }
+  .panel-green > a:hover {
+    color: #3d8b3d;
+  }
+  .panel-red {
+    border-color: #d9534f;
+  }
+  .panel-red > .panel-heading {
+    border-color: #d9534f;
+    color: white;
+    background-color: #d9534f;
+  }
+  .panel-red > a {
+    color: #d9534f;
+  }
+  .panel-red > a:hover {
+    color: #b52b27;
+  }
+  .panel-yellow {
+    border-color: #f0ad4e;
+  }
+  .panel-yellow > .panel-heading {
+    border-color: #f0ad4e;
+    color: white;
+    background-color: #f0ad4e;
+  }
+  .panel-yellow > a {
+    color: #f0ad4e;
+  }
+  .panel-yellow > a:hover {
+    color: #df8a13;
+  }
+
+  .panel-primary {
+    border-color: #337ab7;
+  }
+  .panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #337ab7;
+  }
+  .panel-primary > .panel-heading + .panel-collapse > .panel-body {
+    border-top-color: #337ab7;
+  }
+  .panel-primary > .panel-heading .badge {
+    color: #337ab7;
+    background-color: #fff;
+  }
+  .panel-primary > .panel-footer + .panel-collapse > .panel-body {
+    border-bottom-color: #337ab7;
+  }
+  @media (min-width: 1200px) {
+     .col-lg-3 {
+      float: left;
+    }
+  }
+
+  .cards1 {
+    padding: 4rem;
+    background-image: url('/images/img-home.jpg');
+    height: auto;
+   
+  }
+
+  .cards1__items {
+    margin-bottom: 24px;
+  }
+  
+  .cards1__item {
+    display: flex;
+    flex: 1;
+    margin: 0 1rem;
+    border-radius: 10px;
+  }
+  
+  @media only screen and (min-width: 1024px) {
+    .cards1__items {
+      display: flex;
+    }
+  }
+  
+  @media only screen and (max-width: 1024px) {
+    .cards1__item {
+      margin-bottom: 2rem;
+    }
+  }
+  
+  .cards2 {
+    padding: 100px;
+  
+    height: auto;
+    margin-left: 400px;
+   
+  }
+
+  mhtml,mbody
+  {
+    padding: 0;
+    margin: 0;
+    
+  }
+
+  mbody, .dial
+  {
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+  }
+.gauge
+  {
+    position: relative;
+    width: 500px;
+    height: 50px;
+    top: 0px;
+    left: 50%;
+    bottom: 3px;
+    
+    margin-left: -250px;
+    border-radius: 10%;
+    transform-origin: 50% ;
+    -webkit-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -webkit-transform: rotate(0deg);
+
+  }
+
+  .meter
+  {
+    margin: 0;
+    padding: 0;
+  }
+
+  .meter > li
+  {
+    width: 250px;
+    height: 250px;
+    list-style-type: none;
+    position: absolute;
+    border-top-left-radius: 250px;
+    border-top-right-radius: 0px;
+    transform-origin:  100% 100%;;
+    -webkit-transform-origin:  100% 100%;;
+    -ms-transform-origin:  100% 100%;;
+    transition-property: -webkit-transform;
+    pointer-events: none;
+  }
+
+  .meter .low
+  {
+    transform: rotate(0deg); /* W3C */
+    -webkit-transform: rotate(0deg); /* Safari & Chrome */
+    -moz-transform: rotate(0deg); /* Firefox */
+    -ms-transform: rotate(0deg); /* Internet Explorer */
+    -o-transform: rotate(0deg); /* Opera */
+    z-index: 8;
+    background-color: #FA0E1C;
+  }
+
+  .meter .normal
+  {
+    transform: rotate(47deg); /* W3C */
+    -webkit-transform: rotate(47deg); /* Safari & Chrome */
+    -moz-transform: rotate(47deg); /* Firefox */
+    -ms-transform: rotate(47deg); /* Internet Explorer */
+    -o-transform: rotate(47deg); /* Opera */
+    z-index: 7;
+    background-color: #FEE62A;
+  }
+
+  .meter .high
+  {
+    transform: rotate(90deg); /* W3C */
+    -webkit-transform: rotate(90deg); /* Safari & Chrome */
+    -moz-transform: rotate(90deg); /* Firefox */
+    -ms-transform: rotate(90deg); /* Internet Explorer */
+    -o-transform: rotate(90deg); /* Opera */
+    z-index: 6;
+    background-color: #09B84F;
+  }
+
+  
+  .dial,
+  .dial .inner
+  {
+    width: 470px;
+    height: 470px;
+    position: relative;
+    top: 10px;
+    left: 5px;
+    border-radius: 100%;
+    border-color: purple;
+    z-index: 10;
+    transition-property: -webkit-transform;
+    transition-duration: 2s;
+    transition-timing-function: ease-in-out;
+    transform: rotate(0deg); /* W3C */
+    -webkit-transform: rotate(0deg); /* Safari & Chrome */
+    -moz-transform: rotate(0deg); /* Firefox */
+    -ms-transform: rotate(0deg); /* Internet Explorer */
+    -o-transform: rotate(0deg); /* Opera */
+  }
+
+  .dial .arrow
+  {
+    width: 0; 
+    height: 0; 
+    position: absolute;
+    top: 214px;
+    left: 24px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 32px solid #070707;
+    -webkit-transform: rotate(-88deg); /* Safari & Chrome */
+    -moz-transform: rotate(88deg); /* Firefox */
+    -ms-transform: rotate(88deg); /* Internet Explorer */
+    -o-transform: rotate(88deg); /* Opera */
+
+  }
+
+  .gauge .value
+  {
+    font-family: 'josefin slab', serif;
+    font-size: 50px;
+    color: #040505;
+    position: absolute;
+    top: 142px;
+    left: 45%;
+    z-index: 11;
+  }
+  div.relative {
+    position:center;
+    left: 700px;
+    bottom:380px;
+  }
+    
+ 
+ 
+  .h5{
+    position: relative;
+    font-family: "Roboto", sans-serif;
+    font-weight: 200px;
+    font-size: 32px;
+    left: 120px;
+    top: 40px;
+    color: #080808;
+  }
+  
+  

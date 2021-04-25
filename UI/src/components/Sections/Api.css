@@ -1,0 +1,121 @@
+.cards {
+    padding: 1rem;
+    background: #fff;
+  }
+
+  
+  .cards__items {
+    margin-bottom: 24px;
+   
+  }
+  
+  .cards__item {
+    display: flex;
+    flex: 1;
+    margin: 0 1rem;
+    border-radius: 10px;
+    width: 200%;
+  }
+
+
+  
+  @media only screen and (min-width: 1024px) {
+    .cards__items {
+      display: flex;
+  
+    }
+  }
+  
+
+h1{
+    margin: 23px 0px 0px 60px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 11ch;
+    color: rgb(189, 189, 189);
+}
+
+.column {
+    width: 250px;
+    height: 300px;
+    margin: 50px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-align:center;
+    box-shadow: 10px 10px 5px #ccc;
+    -moz-box-shadow: 10px 10px 5px #ccc;
+    -webkit-box-shadow: 10px 10px 5px #ccc;
+    -khtml-box-shadow: 10px 10px 5px #ccc;
+}
+.column .view {
+    background-color: #666666;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    opacity: 0;
+    width: 250px;
+    height: 300px;
+
+}
+
+
+
+.column:hover .view {
+   opacity: 0.8; 
+  }
+.column .text {
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    transform: translateY(30px);
+    -webkit-transform: translateY(30px);
+}
+.column .name {
+    font-size: 2.5em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition-delay: 0.2s;
+    transition-duration: 0.3s;
+}
+
+
+
+.column:hover .name,
+.column:focus .name {
+    opacity: 1;
+    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+}
+h2.name.text{
+    font-size: 23px;
+    margin-top: 150px;
+}
+
+
+
+.title {
+    color: grey;
+}
+
+.row {
+    display: flex;
+    margin-left: 200px;
+}
+
+
+img{
+  height: 300px;
+  width: 200px;
+
+}
+.show{
+  width: 150px;
+}
