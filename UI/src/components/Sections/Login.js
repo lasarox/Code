@@ -29,10 +29,10 @@ class Login extends React.Component{
         }
         try {
             const result = await LoginReq(data);
-            console.log(result);
+            // console.log(result);
             
             if (result) {
-                console.log("loging function")
+                // console.log("loging function")
                 localStorage.setItem('Token', result.token);
                 this.props.history.push('/home')
                 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = `http://localhost:8080/app/`;
+const baseURL = `https://qualip.herokuapp.com/app/`;
 
 export async function post(url, data) {
   let options = {

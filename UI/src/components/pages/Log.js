@@ -8,8 +8,6 @@ function Log() {
   return (
     <>
       <Login/>
-  
-
     </>
   );
 }
