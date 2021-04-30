@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">QUALIP</string>
+    <string name="main_screen_title">QUALIP Scanner</string>
+    <string name="button_label_take_photo">Take Photo</string>
+    <string name="button_label_save">Save</string>
+    <string name="imageview_description">Uploaded Photo of shoes</string>
+</resources>
