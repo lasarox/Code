@@ -13,13 +13,15 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.mlkit.common.model.LocalModel;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.label.ImageLabel;
 import com.google.mlkit.vision.label.ImageLabeler;
 import com.google.mlkit.vision.label.ImageLabeling;
 import com.google.mlkit.vision.label.custom.CustomImageLabelerOptions;
-
 
 import java.io.IOException;
 import java.util.List;
@@ -44,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
     private LocalModel localModel;
     private ImageLabeler labeler;
 
+    private DatabaseReference mDatabase;
+
+    private String type = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         this.btnTakePhoto = findViewById(R.id.btn_takePhoto);
         this.btnSave = findViewById(R.id.btn_save);
         this.img = findViewById(R.id.imageView);
+
+        // FirebaseApp.initializeApp();
+        mDatabase = FirebaseDatabase.getInstance().getReference("data");
 
         localModel =
                 new LocalModel.Builder()
@@ -80,7 +89,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(isNewOne) {
-
+                    if(type == null) {
+                        Snackbar.make(layout,"Please take a photo of product!",Snackbar.LENGTH_LONG).show();
+                    } else {
+                        updateDB(type);
+                    }
                 } else {
                     Snackbar.make(layout,"Already saved!",Snackbar.LENGTH_LONG).show();
                 }
@@ -157,17 +170,24 @@ public class MainActivity extends AppCompatActivity {
                                     if(confidence < 0.80 && confidence >= 0.50) {
                                         // to be repaired
                                         message = "to be repaired";
+                                        type = "to_be_repaired";
+
                                     } else if(confidence < 0.50) {
                                         // to be recycle
                                         message = "to be recycled";
+                                        type = "to_be_recycle";
+                                    } else {
+                                        type = "manufactured";
                                     }
                                 } else {
                                     if(confidence >= 0.75) {
                                         // to be repaired
                                         message = "to be repaired";
+                                        type = "to_be_repaired";
                                     } else {
                                         // to be recycle
                                         message = "to be recycled";
+                                        type = "to_be_recycle";
                                     }
                                 }
                                 txtMessage.setText(message);
@@ -188,4 +208,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void updateDB(String _child) {
+        mDatabase.child(_child).setValue(ServerValue.increment(1));
+        if(_child.equals("to_be_recycle") || _child.equals("to_be_repaired")) {
+            mDatabase.child("defected").setValue(ServerValue.increment(1));
+        }
+
+        Snackbar.make(layout,"Saved!",Snackbar.LENGTH_LONG).show();
+        isNewOne = false;
+    }
 }
