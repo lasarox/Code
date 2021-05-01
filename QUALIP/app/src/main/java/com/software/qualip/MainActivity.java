@@ -5,19 +5,14 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
@@ -27,7 +22,6 @@ import com.google.mlkit.vision.label.ImageLabel;
 import com.google.mlkit.vision.label.ImageLabeler;
 import com.google.mlkit.vision.label.ImageLabeling;
 import com.google.mlkit.vision.label.custom.CustomImageLabelerOptions;
-
 
 import java.io.IOException;
 import java.util.List;
@@ -215,24 +209,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateDB(String _child) {
-//        mDatabase.child("data").child("manufactured").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                if (!task.isSuccessful()) {
-//                    Log.e("firebase", "Error getting data", task.getException());
-//                    Snackbar.make(layout,"Error from firebase",Snackbar.LENGTH_LONG).show();
-//                }
-//                else {
-//                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
-//                    int manufactured = Integer.parseInt(String.valueOf(task.getResult().getValue()));
-//                    manufactured++;
-//
-//                    mDatabase.child("data").child("").setValue(manufactured);
-//
-//
-//                }
-//            }
-//        });
         mDatabase.child(_child).setValue(ServerValue.increment(1));
         if(_child.equals("to_be_recycle") || _child.equals("to_be_repaired")) {
             mDatabase.child("defected").setValue(ServerValue.increment(1));
