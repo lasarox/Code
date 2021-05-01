@@ -10,10 +10,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.mlkit.common.model.LocalModel;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.label.ImageLabel;
+import com.google.mlkit.vision.label.ImageLabeler;
+import com.google.mlkit.vision.label.ImageLabeling;
+import com.google.mlkit.vision.label.custom.CustomImageLabelerOptions;
+
 
 import java.io.IOException;
+import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -29,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
     private boolean isNewOne = false;
 
     private ConstraintLayout layout;
+    private boolean modelLoadFailed = false;
+    private LocalModel localModel;
+    private ImageLabeler labeler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +54,20 @@ public class MainActivity extends AppCompatActivity {
         this.btnTakePhoto = findViewById(R.id.btn_takePhoto);
         this.btnSave = findViewById(R.id.btn_save);
         this.img = findViewById(R.id.imageView);
+
+        localModel =
+                new LocalModel.Builder()
+                        .setAssetFilePath("model.tflite")
+                        .build();
+
+        CustomImageLabelerOptions customImageLabelerOptions =
+                new CustomImageLabelerOptions.Builder(localModel)
+                        .setConfidenceThreshold(0.7f)
+                        .setMaxResultCount(2)
+                        .build();
+
+        labeler = ImageLabeling.getClient(customImageLabelerOptions);
+
 
         this.btnTakePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,11 +131,60 @@ public class MainActivity extends AppCompatActivity {
                                 filePath);
                 img.setImageBitmap(bitmap);
                 isNewOne = true;
+                onPrediction();
             }
 
             catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void onPrediction() {
+        try {
+
+            InputImage image = InputImage.fromFilePath(this,filePath);
+
+            labeler.process(image)
+                    .addOnSuccessListener(new OnSuccessListener<List<ImageLabel>>() {
+                        @Override
+                        public void onSuccess(List<ImageLabel> labels) {
+                            for (ImageLabel label : labels) {
+                                String text = label.getText();
+                                float confidence = label.getConfidence();
+                                String message = "Good";
+                                if(text.equals("not_damaged")) {
+                                    if(confidence < 0.80 && confidence >= 0.50) {
+                                        // to be repaired
+                                        message = "to be repaired";
+                                    } else if(confidence < 0.50) {
+                                        // to be recycle
+                                        message = "to be recycled";
+                                    }
+                                } else {
+                                    if(confidence >= 0.75) {
+                                        // to be repaired
+                                        message = "to be repaired";
+                                    } else {
+                                        // to be recycle
+                                        message = "to be recycled";
+                                    }
+                                }
+                                txtMessage.setText(message);
+                                break;
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Snackbar.make(layout,"Failed to predict",Snackbar.LENGTH_LONG).show();
+                        }
+                    });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Snackbar.make(layout,"Failed to predict",Snackbar.LENGTH_LONG).show();
         }
     }
 
